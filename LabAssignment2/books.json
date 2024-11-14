@@ -1,0 +1,39 @@
+{
+    "BookInfo": [
+        {
+            "id": 1,
+            "title": "Core Java",
+            "author": "Rashmi Kanta Das",
+            "price": 500,
+            "publisher": "Vikas"
+        },
+        {
+            "id": 2,
+            "title": "Mastering in HTML,CSS,JavaScript",
+            "author": "Rafe Colburn",
+            "price": 514,
+            "publisher": "PaperBack"
+        },
+        {
+            "id": 3,
+            "title": "Web Technologies",
+            "author": "Kogent",
+            "price": 791,
+            "publisher": "PaperBack"
+        },
+        {
+            "id": 4,
+            "title": "Core Python Programming",
+            "author": "R Nageshwar Rao",
+            "price": 785,
+            "publisher": "Dream Tech"
+        },
+        {
+            "id": 5,
+            "title": "Introduction to DS",
+            "author": "B. Uma Maheshwari & R. Sujatha",
+            "price": 588,
+            "publisher": "Wiley"
+        }
+    ]
+}

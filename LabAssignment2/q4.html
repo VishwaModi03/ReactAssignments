@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>Image Slider</title>
+        <script src="jq.min.js"></script>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            #slideDiv {
+                width: 500px;
+                height: 420px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                text-align: center;
+                border: 5px dashed brown;
+                border-radius: 15px;
+                background-color: rgb(243, 203, 156);
+            }
+            #imageDiv {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            img {
+                width: 400px;
+                height: 300px;
+                display: none;
+            }   
+            img.active {
+                display: block;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 18px;
+                color: rgb(211, 39, 39);
+                border: none;
+                border-radius: 15px;
+                margin: 10px;
+                width: 120px;
+                height: 50px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #ecbdbd;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="slideDiv" class="slide">
+            <div id="imageDiv">
+                <img src="images/n1.jpg" alt="Image1" class="active">
+                <img src="images/n2.jpg" alt="Image2">
+                <img src="images/n3.jpg" alt="Image3">
+                <img src="images/n4.jpg" alt="Image4">
+            </div>
+            <div id="buttonDiv">
+                <button id="btnPr">Previous</button>
+                <button id="btnNxt">Next</button>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                let curImg = 0;
+                const imgs = $('.slide img');
+                const totalImg = imgs.length;
+
+                function DispImg(index) {
+                    imgs.removeClass('active');
+                    imgs.eq(index).addClass('active');
+                }
+
+                $("#btnNxt").click(function() {
+                    curImg++;
+                    if (curImg >= totalImg) {
+                        curImg = 0;
+                    }
+                    DispImg(curImg);
+                });
+
+                $("#btnPr").click(function() {
+                    curImg--;
+                    if (curImg < 0) {
+                        curImg = totalImg - 1;
+                    }
+                    DispImg(curImg);
+                });
+            });
+        </script>
+    </body>
+</html>

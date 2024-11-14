@@ -1,0 +1,158 @@
+<html>
+<head>
+    <title>Load More Books</title>
+    <script src="jq.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        #bookList {
+            margin-top: 20px;
+        }
+        .bookData {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background: white;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Load More Option</h1>
+    <div id="bookList"></div>
+    <button id="btnLoadMore">Load More</button>
+
+    <script>
+        let cPage = 1; // Current page number
+        const booksPerPage = 5; // Number of books per page
+        const booksData = {
+            "books": [
+                // Data for the first page
+                [
+                    {
+                        "id": 1,
+                        "title": "Core Java",
+                        "author": "Rashmi Kanta Das",
+                        "price": 500,
+                        "publisher": "Vikas"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Mastering in HTML, CSS, JavaScript",
+                        "author": "Rafe Colburn",
+                        "price": 514,
+                        "publisher": "PaperBack"
+                    },
+                    {
+                        "id": 3,
+                        "title": "Web Technologies",
+                        "author": "Kogent",
+                        "price": 791,
+                        "publisher": "PaperBack"
+                    },
+                    {
+                        "id": 4,
+                        "title": "Core Python Programming",
+                        "author": "R Nageshwar Rao",
+                        "price": 785,
+                        "publisher": "Dream Tech"
+                    },
+                    {
+                        "id": 5,
+                        "title": "Introduction to DS",
+                        "author": "B. Uma Maheshwari & R. Sujatha",
+                        "price": 588,
+                        "publisher": "Wiley"
+                    }
+                ],
+                // Data for the second page
+                [
+                    {
+                        "id": 6,
+                        "title": "Core Java",
+                        "author": "Rashmi Kanta Das",
+                        "price": 500,
+                        "publisher": "Vikas"
+                    },
+                    {
+                        "id": 7,
+                        "title": "Mastering in HTML, CSS, JavaScript",
+                        "author": "Rafe Colburn",
+                        "price": 514,
+                        "publisher": "PaperBack"
+                    },
+                    {
+                        "id": 8,
+                        "title": "Web Technologies",
+                        "author": "Kogent",
+                        "price": 791,
+                        "publisher": "PaperBack"
+                    }
+                ],
+                // Data for the third page
+                [
+                    {
+                        "id": 9,
+                        "title": "Introduction to AI",
+                        "author": "Tom M. Mitchell",
+                        "price": 1000,
+                        "publisher": "McGraw Hill"
+                    },
+                    {
+                        "id": 10,
+                        "title": "Machine Learning with Python",
+                        "author": "Sebastian Raschka",
+                        "price": 900,
+                        "publisher": "Packt"
+                    }
+                ]
+            ]
+        };
+
+        $(document).ready(function() {
+            loadBooks(cPage);
+
+            $("#btnLoadMore").click(function() {
+                cPage++;
+                loadBooks(cPage);
+            });
+        });
+
+        function loadBooks(page) {
+            if (page > booksData.books.length) {
+                alert("No more books to load.");
+                $("#btnLoadMore").hide(); // Hide button if no more pages
+                return; // Exit the function
+            }
+
+            const books = booksData.books[page - 1];
+            let booksListView = ''; // Initialize to avoid undefined
+
+            $.each(books, function(index, book) {
+                booksListView += `<div class="bookData">
+                                        <ul>
+                                            <li><strong>ID:</strong> ${book.id}</li>
+                                            <li><strong>Title:</strong> ${book.title}</li>
+                                            <li><strong>Author:</strong> ${book.author}</li>
+                                            <li><strong>Price:</strong> ${book.price}</li>
+                                            <li><strong>Publisher:</strong> ${book.publisher}</li>
+                                        </ul>
+                                    </div>`;
+            });
+
+            $("#bookList").append(booksListView); // Append to the existing list
+        }
+    </script>
+</body>
+</html>

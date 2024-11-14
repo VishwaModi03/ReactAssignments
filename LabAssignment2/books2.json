@@ -1,0 +1,25 @@
+{
+    "BookInfo": [
+        {
+            "id": 6,
+            "title": "Core Java",
+            "author": "Rashmi Kanta Das",
+            "price": 500,
+            "publisher": "Vikas"
+        },
+        {
+            "id": 7,
+            "title": "Mastering in HTML, CSS, JavaScript",
+            "author": "Rafe Colburn",
+            "price": 514,
+            "publisher": "PaperBack"
+        },
+        {
+            "id": 8,
+            "title": "Web Technologies",
+            "author": "Kogent",
+            "price": 791,
+            "publisher": "PaperBack"
+        }
+    ]
+}

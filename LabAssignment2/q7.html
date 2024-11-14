@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete Search</title>
+    <script src="jq.min.js"></script>
+    <style>
+        /* Basic styling for the input and suggestions */
+        #searchInput {
+            width: 300px;
+            padding: 10px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .suggestion {
+            border: 1px solid #ccc;
+            max-width: 300px;
+            border-radius: 4px;
+            position: absolute;
+            background: white;
+            z-index: 1000;
+        }
+        .suggestion div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion div:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Autocomplete Search Feature</h1>
+    <input type="text" id="searchInput" placeholder="Search for books...">
+    <div id="suggestions" class="suggestion" style="display: none;"></div>
+
+    <script>
+        $(document).ready(function() {
+            // JSON data that was originally in 'search.json'
+            const bookData = [
+                { "id": 1, "title": "Core Java" },
+                { "id": 2, "title": "Mastering in HTML, CSS, JavaScript" },
+                { "id": 3, "title": "Web Technologies" },
+                { "id": 4, "title": "Core Python Programming" },
+                { "id": 5, "title": "Introduction to DS" },
+                { "id": 6, "title": "Design Patterns" },
+                { "id": 7, "title": "JavaScript: The Good Parts" },
+                { "id": 8, "title": "Eloquent JavaScript" }
+            ];
+
+            // Event listener for input field
+            $('#searchInput').on('input', function() {
+                const query = $(this).val();
+
+                if (query.length >= 2) { // Start searching after 2 characters
+                    const suggestions = bookData.filter(item => 
+                        item.title.toLowerCase().includes(query.toLowerCase())
+                    );
+
+                    displaySuggestions(suggestions);
+                } else {
+                    $('#suggestions').hide(); // Hide suggestions if input is less than 2 characters
+                }
+            });
+
+            // Function to display suggestions
+            function displaySuggestions(suggestions) {
+                $('#suggestions').empty(); // Clear previous suggestions
+                if (suggestions.length > 0) {
+                    suggestions.forEach(suggestion => {
+                        $('#suggestions').append(`
+                            <div class="suggestion-item">${suggestion.title}</div>
+                        `);
+                    });
+                    $('#suggestions').show(); // Show suggestions
+                } else {
+                    $('#suggestions').hide(); // Hide if no suggestions
+                }
+            }
+
+            // Click event for suggestion item
+            $(document).on('click', '.suggestion-item', function() {
+                $('#searchInput').val($(this).text()); // Set input value to clicked suggestion
+                $('#suggestions').hide(); // Hide suggestions after selection
+            });
+
+            // Hide suggestions when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#searchInput').length) {
+                    $('#suggestions').hide(); // Hide suggestions if click is outside
+                }
+            });
+        });
+    </script>
+</body>
+</html>

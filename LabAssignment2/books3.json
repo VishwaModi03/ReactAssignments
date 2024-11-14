@@ -1,0 +1,18 @@
+{
+    "BookInfo": [
+        {
+            "id": 9,
+            "title": "Introduction to AI",
+            "author": "Tom M. Mitchell",
+            "price": 1000,
+            "publisher": "McGraw Hill"
+        },
+        {
+            "id": 10,
+            "title": "Machine Learning with Python",
+            "author": "Sebastian Raschka",
+            "price": 900,
+            "publisher": "Packt"
+        }
+    ]
+}

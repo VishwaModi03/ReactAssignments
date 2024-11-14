@@ -1,0 +1,108 @@
+<html>
+<head>
+    <script src="jq.min.js"></script>
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .weather-container {
+            width: 450px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        #city {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+        #get-weather {
+            padding: 10px;
+        }
+        .weather-info {
+            margin-top: 10px;
+        }
+        .weather-icon {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h2>Weather App</h2>
+        <input type="text" id="city" placeholder="Enter city name..." />
+        <button id="get-weather">Get Weather</button>
+        <div class="weather-info" id="weather-info"></div>
+    </div>
+
+    <script>
+        document.getElementById("get-weather").addEventListener("click", getWeather);
+
+        function getWeather() {
+            const city = document.getElementById("city").value.trim();
+            if (city) {
+                // Simulate fetching weather data
+                const weatherData = simulateWeatherData(city);
+                displayWeather(weatherData);
+            }
+        }
+
+        function simulateWeatherData(city) {
+            const weatherConditions = {
+                "New York": {
+                    temp: 15,
+                    description: "Clear Sky",
+                    
+                },
+                "Los Angeles": {
+                    temp: 22,
+                    description: "Sunny",
+                },
+                "Chicago": {
+                    temp: 10,
+                    description: "Rainy",
+                },
+                "Houston": {
+                    temp: 28,
+                    description: "Thunderstorm",
+                },
+                "Miami": {
+                    temp: 30,
+                    description: "Partly Cloudy",
+                },
+            };
+
+            return weatherConditions[city] || {
+                temp: null,
+                description: "City not found",
+                icon: ""
+            };
+        }
+
+        function displayWeather(data) {
+            const weatherInfo = document.getElementById("weather-info");
+            weatherInfo.innerHTML = ""; // Clear previous results
+
+            if (data.temp !== null) {
+                weatherInfo.innerHTML = `
+                    <h3>${data.temp}°C</h3>
+                    <p>${data.description}</p>
+                `;
+            } else {
+                weatherInfo.innerHTML = `<p>${data.description}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Chat Application</title>
+        <script src="jq.min.js"></script>
+
+        <style>
+            body 
+            {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f4f4f4;
+            }
+            #mainDiv 
+            {
+                width: 450px;
+                margin: 0 auto;
+                border: 1px solid #ccc;
+                padding: 10px;
+                background: white;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            #chatDiv
+            {
+                height: 200px;
+                overflow-y: scroll;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                padding: 5px;
+                background: #fafafa;
+            }
+            .chatMsg 
+            {
+                margin: 5px 0;
+            }
+            #txtMsg
+            {
+                width: 70%;
+                padding: 10px;
+                border: 1px solid #ccc;
+            }
+            #btnSend
+            {
+                padding: 10px;
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mainDiv">
+            <h2>Chat Application</h2>
+            <div id="chatDiv"></div>
+            <input type="text" id="txtMsg" placeholder="Enter a Message">
+            <button id="btnSend">Send</button>
+        </div>
+        
+        <script>
+            let msgs=[];
+            document.getElementById("btnSend").addEventListener("click",sendMsg);
+            document.getElementById("txtMsg").addEventListener("keypress",function(e){
+                if(e.key==="Enter")
+                {
+                    sendMsg();
+                }
+            });
+            function sendMsg(){
+                const msgData=document.getElementById("txtMsg");
+                const msg=msgData.value.trim();
+
+                if(msg){
+                    msgs.push({text:msg,sender:'you'});
+                    updMsg();
+                    msgData.value="";
+
+                    setTimeout(()=>{
+                        receiveMsg(`Reply to:"${msg}"`);
+                    },1000);
+                }
+            }
+
+            function receiveMsg(msg){
+                msgs.push({text:msg,sender:"other"});
+                updMsg();
+            }
+
+            function updMsg(){
+                const chBox=document.getElementById("chatDiv");
+                chBox.innerHTML="";
+                msgs.forEach((mesg)=>{
+                    const msgDiv=document.createElement('div');
+                    msgDiv.className="chatMsg";
+                    msgDiv.textContent=`${mesg.sender}:${mesg.text}`;
+                    chBox.appendChild(msgDiv);
+                });
+                chBox.scrollTop=chBox.scrollHeight;
+            }
+        </script>
+    </body>
+</html>

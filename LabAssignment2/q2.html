@@ -1,0 +1,122 @@
+<!--
+Create an HTML page that includes two dropdown menus (combos): one for selecting states 
+and  another for displaying cities. When the user selects a state from the primary combo, the  
+secondary combo (cities) should dynamically update to display cities relevant to the selected  
+state. 
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+    <script src="jq.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+        #mainDiv{
+            margin-left: 150px;
+        }
+        .dropdown-container {
+            text-align: center; 
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #495057;
+            margin-right: 10px;
+        }
+
+        select {
+            padding: 12px;
+            border: 2px solid #6c757d;
+            border-radius: 5px;
+            width: 250px; /* Fixed width for dropdowns */
+            margin-top: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        select:focus {
+            border-color: #007bff; /* Change border color on focus */
+            outline: none; /* Remove outline */
+        }
+
+        option {
+            padding: 10px; /* Space within the dropdown options */
+        }
+
+        /* Button styling */
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto; /* Center the button */
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Darken button on hover */
+        }
+    </style>
+</head>
+<body>
+    <h2>Select States and their Cities</h2>
+    <div id="mainDiv">
+        <label for="State">Select Your State:</label>
+        <select id="StDropDown">
+            <option value="">Select Value</option>
+            <option value="gujarat">Gujarat</option>
+            <option value="maharastr">Maharashtra</option>
+            <option value="rajasthan">Rajasthan</option>
+            <option value="up">Uttar Pradesh</option>
+            <option value="mp">Madhya Pradesh</option>
+        </select>
+
+        <label for="city">Cities:</label>
+        <select id="cityDropDown">
+            <option value="">Select City</option>
+        </select>
+    </div>
+    
+
+    <script>
+        $(document).ready(function(){
+            const CityList = {
+                "gujarat": ['Surat', "Ahmedabad", "Kutch"],
+                "maharastr": ['Mumbai', 'Pune', 'Nasik'],
+                "rajasthan": ["Udaipur", "Jaipur", "Kota"],
+                "up": ["Ayodhya", "Varanasi", "Agra"],
+                "mp": ["Bhopal", "Indore", "Ujjain"]
+            };
+
+            $("#StDropDown").change(function(){
+                const selectedState = $(this).val();
+                const $cityNames = $("#cityDropDown");
+
+                $cityNames.html("<option value=''>Select City</option>");
+                if(selectedState && CityList[selectedState]) {
+                    $.each(CityList[selectedState], function(index, city){
+                        $cityNames.append($('<option>', { value: city, text: city }));
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

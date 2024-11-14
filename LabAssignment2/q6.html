@@ -1,0 +1,93 @@
+<!--
+ Develop a webpage that retrieves and displays data from a public JSON API (e.g., a list of books,  
+movies, or weather information) using AJAX. Display this data in a visually appealing manner 
+on  the page.  
+-->
+<html>
+    <head>
+        <title>Ajax Example</title>
+        <script src="jq.min.js"></script>
+    </head>
+    <body>
+        <h2>Book List</h2>
+        <div id="bookList">
+        </div>
+    
+    <script>
+        $(document).ready(function(){
+
+            let BookData =   {
+            "BookInfo": 
+            [
+                {
+                    "id": 1,
+                    "title": "Core Java",
+                    "author": "Rashmi Kanta Das",
+                    "price": 500,
+                    "publisher": "Vikas"
+                },
+                {
+                    "id": 2,
+                    "title": "Mastering in HTML,CSS,JavaScript",
+                    "author": "Rafe Colburn",
+                    "price": 514,
+                    "publisher": "PaperBack"
+                },
+                {
+                    "id": 3,
+                    "title": "Web Technologies",
+                    "author": "Kogent",
+                    "price": 791,
+                    "publisher": "PaperBack"
+                },
+                {
+                    "id": 4,
+                    "title": "Core Python Programming",
+                    "author": "R Nageshwar Rao",
+                    "price": 785,
+                    "publisher": "Dream Tech"
+                },
+                {
+                    "id": 5,
+                    "title": "Introduction to DS",
+                    "author": "B. Uma Maheshwari & R. Sujatha",
+                    "price": 588,
+                    "publisher": "Wiley"
+                },
+                {
+                    "id": 6,
+                    "title": "Core Java",
+                    "author": "Rashmi Kanta Das",
+                    "price": 500,
+                    "publisher": "Vikas"
+                },
+                {
+                    "id": 7,
+                    "title": "Mastering in HTML, CSS, JavaScript",
+                    "author": "Rafe Colburn",
+                    "price": 514,
+                    "publisher": "PaperBack"
+                }
+            ]
+            };
+       
+            let books=BookData.BookInfo;
+            let booksListView='';
+
+            $.each(books,function(index,book){
+                booksListView +=` <div class="bookData"> 
+                                <ul>
+                                    <li>${book.id}</li>
+                                    <li>${book.title}</li>
+                                    <li>${book.author}</li>
+                                    <li>${book.price}</li>
+                                    <li>${book.publisher}</li>
+                                </ul>
+                                </div>`;
+                });
+                $("#bookList").html(booksListView);
+        });
+
+    </script>
+    </body>
+</html>

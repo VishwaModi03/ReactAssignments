@@ -1,0 +1,10 @@
+[
+    { "id": 1, "title": "Core Java" },
+    { "id": 2, "title": "Mastering in HTML, CSS, JavaScript" },
+    { "id": 3, "title": "Web Technologies" },
+    { "id": 4, "title": "Core Python Programming" },
+    { "id": 5, "title": "Introduction to DS" },
+    { "id": 6, "title": "Design Patterns" },
+    { "id": 7, "title": "JavaScript: The Good Parts" },
+    { "id": 8, "title": "Eloquent JavaScript" }
+]
